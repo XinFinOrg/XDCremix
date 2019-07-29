@@ -5,7 +5,7 @@ import * as packageJson from '../../../package.json'
 export const profile = {
   name: 'network',
   description: 'Manage the network (mainnet, ropsten, goerli...) and the provider (web3, vm, injected)',
-  methods: ['getNetworkProvider', 'getEndpoint', 'detectNetwork', 'addNetwork', 'removeNetwork'],
+  methods: [],
   version: packageJson.version
 }
 
@@ -18,7 +18,7 @@ export class NetworkModule extends Plugin {
     super(profile)
     // TODO: See with remix-lib to make sementic coherent
     executionContext.event.register('contextChanged', (provider) => {
-      this.emit('providerChanged', provider)
+      this.events.emit('providerChanged', provider)
     })
     /*
     // Events that could be implemented later

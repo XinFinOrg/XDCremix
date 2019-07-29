@@ -107,9 +107,6 @@ var css = csjs`
     flex-direction: row;
     align-items: baseline;
   }
-  .button button{
-    flex: none;
-  }
   .button {
     display: flex;
     align-items: center;

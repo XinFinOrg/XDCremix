@@ -97,7 +97,6 @@ var css = csjs`
   }
   .instanceButton {
     border-radius: 3px;
-    flex: 3;
   }
   .closeIcon {
     font-size: 12px;
@@ -110,6 +109,7 @@ var css = csjs`
     justify-content: flex-end;
   }
   .contractProperty {
+    overflow: auto;
     margin-bottom: 0.4em;
     margin-top: 1em;
     width:100%;

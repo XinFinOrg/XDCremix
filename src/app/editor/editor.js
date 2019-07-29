@@ -12,7 +12,6 @@ require('brace/ext/language_tools')
 require('brace/ext/searchbox')
 const langTools = ace.acequire('ace/ext/language_tools')
 require('ace-mode-solidity/build/remix-ide/mode-solidity')
-require('ace-mode-move/build/remix-ide/mode-move')
 require('brace/mode/javascript')
 require('brace/mode/python')
 require('brace/mode/json')
@@ -66,7 +65,6 @@ class Editor {
     this.emptySession = this._createSession('')
     this.modes = {
       sol: 'ace/mode/solidity',
-      mvir: 'ace/mode/move',
       js: 'ace/mode/javascript',
       py: 'ace/mode/python',
       vy: 'ace/mode/python',

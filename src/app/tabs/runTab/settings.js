@@ -44,7 +44,7 @@ class SettingsUI {
     if (!this.el) return
     var accounts = $(this.el.querySelector('#txorigin')).children('option')
     accounts.each((index, account) => {
-      this.settings.getAccountBalanceForAddress(account.value, (err, balance) => {
+      this.settings.getAccountBalanceForAddress(account.value.replace('xdc', '0x'), (err, balance) => {
         if (err) return
         account.innerText = helper.shortenAddress(account.value, balance)
       })
@@ -327,18 +327,19 @@ class SettingsUI {
       if (err) { addTooltip(`Cannot get account list: ${err}`) }
       for (var loadedaddress in this.loadedAccounts) {
         if (accounts.indexOf(loadedaddress) === -1) {
-          txOrigin.removeChild(txOrigin.querySelector('option[value="' + loadedaddress + '"]'))
+          txOrigin.removeChild(txOrigin.querySelector('option[value="' + loadedaddress.replace('xdc', '0x') + '"]'))
           delete this.loadedAccounts[loadedaddress]
         }
       }
+      accounts = accounts.map(acc => acc.replace('0x', 'xdc'))
       for (var i in accounts) {
         var address = accounts[i]
         if (!this.loadedAccounts[address]) {
-          txOrigin.appendChild(yo`<option value="${address}" >${address}</option>`)
+          txOrigin.appendChild(yo`<option value="${address.replace('xdc', '0x')}" >${address}</option>`)
           this.loadedAccounts[address] = 1
         }
       }
-      txOrigin.setAttribute('value', accounts[0])
+      txOrigin.setAttribute('value', accounts[0].replace('xdc', '0x'))
     })
   }
 

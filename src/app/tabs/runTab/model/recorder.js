@@ -25,7 +25,7 @@ class Recorder {
     this.udapp.event.register('initiatingTransaction', (timestamp, tx, payLoad) => {
       if (tx.useCall) return
       var { from, to, value } = tx
-
+      from = from.replace('xdc', '0x')
       // convert to and from to tokens
       if (this.data._listen) {
         var record = { value, parameters: payLoad.funArgs }
@@ -74,7 +74,10 @@ class Recorder {
       if (call) return
 
       var address = executionContext.isVM() ? txResult.result.createdAddress : txResult.result.contractAddress
-      if (!address) return // not a contract creation
+      if (!address) {
+        return // not a contract creation
+      }
+      address = address.replace('xdc', '0x')
       address = this.addressToString(address)
       // save back created addresses for the convertion from tokens to real adresses
       this.data._createdContracts[address] = timestamp
@@ -261,6 +264,8 @@ class Recorder {
           } else {
             var address = executionContext.isVM() ? txResult.result.createdAddress : txResult.result.contractAddress
             if (address) {
+              console.log('kaha error aa raha')
+              address = address.replace('xdc', '0x')
               address = self.addressToString(address)
               // save back created addresses for the convertion from tokens to real adresses
               self.data._createdContracts[address] = tx.timestamp

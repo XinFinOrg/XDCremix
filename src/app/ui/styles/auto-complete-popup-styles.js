@@ -5,15 +5,13 @@ var css = csjs`
     position         : absolute;
     text-align       : left;
     display          : none;
-    width            : 95%;
+    width            : 100%;
     font-family      : monospace;
-    background-color : var(--secondary);
+    font-size        : 10px;
     overflow         : auto;
     padding-bottom   : 13px;
-    z-index          : 80;
-    bottom           : 1em;
-    border-width     : 4px;
-    left             : 2em;
+    z-index          : 2;
+    bottom           : 1.7em;
   }
 
   .autoCompleteItem {

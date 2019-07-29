@@ -107,18 +107,10 @@ class ContractDropdownUI {
       return
     }
 
-    const selectedContract = this.getSelectedContract()
-    const clickCallback = (valArray, inputsValues) => {
+    var selectedContract = this.getSelectedContract()
+    var createConstructorInstance = new MultiParamManager(0, selectedContract.getConstructorInterface(), (valArray, inputsValues) => {
       this.createInstance(inputsValues)
-    }
-    const createConstructorInstance = new MultiParamManager(
-      0,
-      selectedContract.getConstructorInterface(),
-      clickCallback,
-      selectedContract.getConstructorInputs(),
-      'Deploy',
-      selectedContract.bytecodeObject
-    )
+    }, selectedContract.getConstructorInputs(), 'Deploy', selectedContract.bytecodeObject)
     this.createPanel.appendChild(createConstructorInstance.render())
   }
 
@@ -132,7 +124,6 @@ class ContractDropdownUI {
 
   createInstance (args) {
     var selectedContract = this.getSelectedContract()
-
     if (selectedContract.bytecodeObject.length === 0) {
       return modalDialogCustom.alert('This contract may be abstract, not implement an abstract parent\'s methods completely or not invoke an inherited contract\'s constructor correctly.')
     }
@@ -199,6 +190,7 @@ class ContractDropdownUI {
     this.event.trigger('clearInstance')
 
     var address = this.atAddressButtonInput.value
+    address = address.replace('xdc', '0x')
     this.dropdownLogic.loadContractFromAddress(address,
       (cb) => {
         modalDialogCustom.confirm(null, 'Do you really want to interact with ' + address + ' using the current ABI definition?', cb)
