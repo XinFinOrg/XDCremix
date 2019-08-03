@@ -5,7 +5,7 @@ In the console, you can run the commands listed below.  Once you start to type a
 
 + *ethers*: The [ethers.js](https://docs.ethers.io/ethers.js/html/getting-started.html) library is a compact and complete JavaScript library for Ethereum. 
 
-+ *remix*:  Ethereum IDE and tools for the web.
++ *remix*:  XinFin Network IDE and tools for the web.
  
 + *web3*: The [web3.js](https://web3js.readthedocs.io/en/1.0/) library is a collection of modules which contain specific functionality for the ethereum ecosystem.
 

@@ -12,7 +12,7 @@ We will need four tools for that :
 
 > -   Geth - this is the center piece and provides the blockchain
 >     environment. We will basically run geth in a dev mode.
-> -   Remix - this is the Ethereum IDE. We will use it to develop our
+> -   Remix - this is the XinFin Network IDE. We will use it to develop our
 >     Solidity contract.
 > -   Any code editor you want - in order to write your front end :)
 

@@ -1,6 +1,6 @@
 const allPrograms = [
   {'ethers': 'The ethers.js library is a compact and complete JavaScript library for Ethereum.'},
-  {'remix': 'Ethereum IDE and tools for the web.'},
+  {'remix': 'XinFin Network IDE and tools for the web.'},
   {'web3': 'The web3.js library is a collection of modules which contain specific functionality for the ethereum ecosystem.'},
   {'swarmgw': 'This library can be used to upload/download files to Swarm via https://swarm-gateways.net/.'}
 ]

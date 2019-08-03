@@ -58,7 +58,8 @@ UniversalDAppUI.prototype.renderInstance = function (contract, address, contract
 // this returns a DOM element
 UniversalDAppUI.prototype.renderInstanceFromABI = function (contractABI, address, contractName) {
   var self = this
-  address = (address.slice(0, 2) === '0x' ? '' : '0x') + address.toString('hex')
+  address = (address.slice(0, 3) === 'xdc' ? '' : 'xdc') + address.toString('hex')
+  address = address.replace('0x', '')
   var instance = yo`<div class="instance ${css.instance} ${css.hidesub}" id="instance${address}"></div>`
   var context = self.udapp.context()
 
@@ -116,7 +117,7 @@ UniversalDAppUI.prototype.renderInstanceFromABI = function (contractABI, address
   if (fallback) {
     contractActionsWrapper.appendChild(this.getCallButton({
       funABI: fallback,
-      address: address,
+      address: address.replace('xdc', '0x'),
       contractAbi: contractABI,
       contractName: contractName
     }))
@@ -129,7 +130,7 @@ UniversalDAppUI.prototype.renderInstanceFromABI = function (contractABI, address
     // @todo getData cannot be used with overloaded functions
     contractActionsWrapper.appendChild(this.getCallButton({
       funABI: funABI,
-      address: address,
+      address: address.replace('xdc', '0x'),
       contractAbi: contractABI,
       contractName: contractName
     }))
@@ -155,7 +156,7 @@ UniversalDAppUI.prototype.getCallButton = function (args) {
     } else {
       logMsg = `call to ${args.contractName}.${(args.funABI.name) ? args.funABI.name : '(fallback)'}`
     }
-    var value = inputsValues
+    var value = inputsValues.replace('xdc', '0x')
 
     var confirmationCb = (network, tx, gasEstimation, continueTxExecution, cancelCb) => {
       if (network.name !== 'Main') {
