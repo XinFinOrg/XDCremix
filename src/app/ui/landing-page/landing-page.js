@@ -235,13 +235,6 @@ export class LandingPage extends ViewPlugin {
               </button>
             </p>
           </div>
-          <div class="resources">
-            <h4>Resources</h4>
-            <p class="mb-1"><a class="${css.text}" target="__blank" href="https://remix.readthedocs.io/en/latest/#">Documentation</a></p>
-            <p class="mb-1"><a class="${css.text}" target="__blank" href="https://gitter.im/ethereum/remix">Gitter channel</a></p>
-            <p class="mb-1"><a class="${css.text}" target="__blank" href="https://medium.com/remix-ide">Medium Posts</a></p>
-            <p class="mb-1"><a class="${css.text}" target="__blank" href="https://remix.readthedocs.io/en/latest/">Tutorials</a></p>
-          </div>
         </div><!-- end of #col2 -->
       </div><!-- end of hpSections -->
       </div>`

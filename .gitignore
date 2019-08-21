@@ -1,6 +1,5 @@
 .idea
 .vscode
-build
 node_modules
 docs/_build
 reports
