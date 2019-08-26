@@ -77,7 +77,6 @@ class Recorder {
       if (!address) {
         return // not a contract creation
       }
-      address = address.replace('xdc', '0x')
       address = this.addressToString(address)
       // save back created addresses for the convertion from tokens to real adresses
       this.data._createdContracts[address] = timestamp
