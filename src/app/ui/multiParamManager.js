@@ -208,7 +208,7 @@ class MultiParamManager {
       this.contractActionsContainerSingle.querySelector('i').style.visibility = 'hidden'
     } else {
       this.contractActionsContainerSingle.querySelector('i').style.visibility = 'hidden'
-      this.basicInputField.style.display = 'none'
+      this.basicInputField.style.visibility = 'hidden'
     }
 
     return contractProperty
