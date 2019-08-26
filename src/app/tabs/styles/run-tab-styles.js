@@ -2,7 +2,6 @@ var csjs = require('csjs-inject')
 
 var css = csjs`
   .runTabView {
-    padding: 2%;
     display: flex;
     flex-direction: column;
   }
@@ -155,18 +154,6 @@ var css = csjs`
     margin-right: 1em;
     display: flex;
     align-items: center;
-  }
-  .transact {
-    color: var(--warning);
-    margin-right: .3em;
-  }
-  .payable {
-    color: var(--warning);
-    margin-right: .3em;
-  }
-  .call {
-    color: var(--info);
-    margin-right: .3em;
   }
   .pendingContainer {
     display: flex;
