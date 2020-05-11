@@ -222,7 +222,7 @@ export class VerticalIcons extends Plugin {
       }}"
       plugin="home" title="Home"
     >
-    <img src="./xinfin-logo_42x42.png" width="42px" height="42px" >
+    <img src="./xdc-logo_42x42.png" width="42px" height="42px" >
     
 
     </div>`
