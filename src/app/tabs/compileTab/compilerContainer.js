@@ -1,7 +1,7 @@
 /* global Worker */
 const yo = require('yo-yo')
-var minixhr = require('minixhr')
 var helper = require('../../../lib/helper')
+const { canUseWorker, urlFromVersion, baseURLBin, baseURLWasm, promisedMiniXhr, pathToURL } = require('../../../lib/compile-utils')
 const addTooltip = require('../../ui/tooltip')
 const semver = require('semver')
 
@@ -24,7 +24,6 @@ class CompilerContainer {
       allversions: null,
       selectedVersion: null,
       defaultVersion: 'soljson-v0.5.1+commit.c8a2cb62.js', // this default version is defined: in makeMockCompiler (for browser test) and in package.json (downloadsolc_root) for the builtin compiler
-      baseurl: 'https://solc-bin.ethereum.org/bin'
     }
   }
 
@@ -297,18 +296,15 @@ class CompilerContainer {
       if (this.data.selectedVersion.indexOf('soljson') !== 0 || helper.checkSpecialChars(this.data.selectedVersion)) {
         return console.log('loading ' + this.data.selectedVersion + ' not allowed')
       }
-      url = `${this.data.baseurl}/${this.data.selectedVersion}`
+      url = `${urlFromVersion(this.data.selectedVersion)}`
     }
-    const isFirefox = typeof InstallTrigger !== 'undefined'
-    if (document.location.protocol !== 'file:' && Worker !== undefined && isFirefox) {
-      // Workers cannot load js on "file:"-URLs and we get a
-      // "Uncaught RangeError: Maximum call stack size exceeded" error on Chromium,
-      // resort to non-worker version in that case.
+    // Workers cannot load js on "file:"-URLs and we get a
+    // "Uncaught RangeError: Maximum call stack size exceeded" error on Chromium,
+    // resort to non-worker version in that case.
+    if (this.data.selectedVersion !== 'builtin' && canUseWorker(this.data.selectedVersion)) {
       this.compileTabLogic.compiler.loadVersion(true, url)
-      this.setVersionText('(loading using worker)')
     } else {
       this.compileTabLogic.compiler.loadVersion(false, url)
-      this.setVersionText('(loading)')
     }
   }
 
@@ -327,25 +323,52 @@ class CompilerContainer {
     if (this._view.version) this._view.version.innerText = text
   }
 
-  fetchAllVersion (callback) {
-    minixhr(`${this.data.baseurl}/list.json`, (json, event) => {
-      // @TODO: optimise and cache results to improve app loading times
-      var allversions, selectedVersion
-      if (event.type !== 'error') {
-        try {
-          const data = JSON.parse(json)
-          allversions = data.builds.slice().reverse()
-          selectedVersion = this.data.defaultVersion
-          if (this.queryParams.get().version) selectedVersion = this.queryParams.get().version
-        } catch (e) {
-          addTooltip('Cannot load compiler version list. It might have been blocked by an advertisement blocker. Please try deactivating any of them from this page and reload.')
-        }
-      } else {
-        allversions = [{ path: 'builtin', longVersion: 'latest local version' }]
-        selectedVersion = 'builtin'
+  async fetchAllVersion (callback) {
+    let selectedVersion, allVersionsWasm
+    let allVersions = [{ path: 'builtin', longVersion: 'latest local version - 0.7.4' }]
+    // fetch normal builds
+    const binRes = await promisedMiniXhr(`${baseURLBin}/list.json`)
+    // fetch wasm builds
+    const wasmRes = await promisedMiniXhr(`${baseURLWasm}/list.json`)
+
+    if (binRes.event.type === 'error' && wasmRes.event.type === 'error') {
+      selectedVersion = 'builtin'
+      return callback(allVersions, selectedVersion)
+    }
+    try {
+      const versions = JSON.parse(binRes.json).builds.slice().reverse()
+
+      allVersions = [...allVersions, ...versions]
+      selectedVersion = this.data.defaultVersion
+      if (this.queryParams.get().version) selectedVersion = this.queryParams.get().version
+      // // Check if version is a URL and corresponding filename starts with 'soljson'
+      // if (selectedVersion.startsWith('https://')) {
+      //   const urlArr = selectedVersion.split('/')
+
+      //   if (urlArr[urlArr.length - 1].startsWith('soljson')) isURL = true
+      // }
+      if (wasmRes.event.type !== 'error') {
+        allVersionsWasm = JSON.parse(wasmRes.json).builds.slice().reverse()
       }
-      callback(allversions, selectedVersion)
-    })
+    } catch (e) {
+      console.log(e);
+      addTooltip('Cannot load compiler version list. It might have been blocked by an advertisement blocker. Please try deactivating any of them from this page and reload.')
+    }
+
+    // replace in allVersions those compiler builds which exist in allVersionsWasm with new once
+    if (allVersionsWasm && allVersions) {
+      allVersions.forEach((compiler, index) => {
+        const wasmIndex = allVersionsWasm.findIndex(wasmCompiler => { return wasmCompiler.longVersion === compiler.longVersion })
+        if (wasmIndex !== -1) {
+          allVersions[index] = allVersionsWasm[wasmIndex]
+          pathToURL[compiler.path] = baseURLWasm
+        } else {
+          pathToURL[compiler.path] = baseURLBin
+        }
+      })
+    }
+    
+    callback(allVersions, selectedVersion)
   }
 
   scheduleCompilation () {
