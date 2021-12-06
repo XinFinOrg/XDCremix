@@ -1,0 +1,43 @@
+export declare class CmdLine {
+    events: any;
+    lineColumnPos: any;
+    rawLocation: any;
+    web3: any;
+    compilation: any;
+    debugger: any;
+    filename: any;
+    txHash: any;
+    solidityState: any;
+    solidityLocals: any;
+    constructor();
+    connect(providerType: any, url: any): void;
+    loadCompilationData(inputJson: any, outputJson: any): void;
+    loadCompilationResult(compilationResult: any): void;
+    initDebugger(cb: any): void;
+    getSource(): any[];
+    getCurrentLine(): any;
+    startDebug(txNumber: any, filename: any, cb: any): void;
+    getVars(): {
+        locals: any;
+        contract: any;
+    };
+    triggerSourceUpdate(): void;
+    stepJumpNextBreakpoint(): void;
+    stepJumpPreviousBreakpoint(): void;
+    stepOverForward(solidityMode: any): void;
+    stepOverBack(solidityMode: any): void;
+    stepIntoForward(solidityMode: any): void;
+    stepIntoBack(solidityMode: any): void;
+    jumpTo(step: any): void;
+    getTraceLength(): any;
+    getCodeFirstStep(): any;
+    getCodeTraceLength(): any;
+    nextStep(): any;
+    previousStep(): any;
+    currentStep(): any;
+    canGoNext(): boolean;
+    canGoPrevious(): boolean;
+    unload(): any;
+    displayLocals(): void;
+    displayGlobals(): void;
+}
