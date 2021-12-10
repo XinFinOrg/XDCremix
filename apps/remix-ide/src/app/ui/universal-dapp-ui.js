@@ -55,11 +55,11 @@ UniversalDAppUI.prototype.renderInstanceFromABI = function (contractABI, address
   const self = this
   address = (address.slice(0, 2) === '0x' ? '' : '0x') + address.toString('hex')
   address = ethJSUtil.toChecksumAddress(address)
-  address = 'xdc'+address.substring(2)
+  // address = 'xdc'+address.substring(2)
   var instance = yo`<div class="instance run-instance border-dark ${css.instance} ${css.hidesub}" id="instance${address}" data-shared="universalDappUiInstance"></div>`
   const context = this.blockchain.context()
 
-  var shortAddress = helper.shortenAddress(address)
+  var shortAddress = helper.shortenAddress('xdc'+address.substring(2))
   var title = yo`
     <div class="${css.title} alert alert-secondary">
       <button data-id="universalDappUiTitleExpander" class="btn ${css.titleExpander}" onclick="${(e) => { toggleClass(e) }}">
@@ -72,7 +72,7 @@ UniversalDAppUI.prototype.renderInstanceFromABI = function (contractABI, address
           </span>
         </div>
         <div class="btn-group">
-          <button class="btn p-1 btn-secondary">${copyToClipboard(() => address)}</button>
+          <button class="btn p-1 btn-secondary">${copyToClipboard(() => 'xdc'+address.substring(2))}</button>
         </div>
       </div>
     </div>
