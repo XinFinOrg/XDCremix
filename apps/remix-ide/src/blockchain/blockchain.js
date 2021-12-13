@@ -264,6 +264,9 @@ class Blockchain extends Plugin {
   }
 
   runOrCallContractMethod (contractName, contractAbi, funABI, contract, value, address, callType, lookupOnly, logMsg, logCallback, outputCb, confirmationCb, continueCb, promptCb) {
+       if(address.substring(0,3)=='xdc'){
+          address = '0x'+address.substring(3)
+      }
     // contractsDetails is used to resolve libraries
     txFormat.buildData(contractName, contractAbi, {}, false, funABI, callType, (error, data) => {
       if (error) {

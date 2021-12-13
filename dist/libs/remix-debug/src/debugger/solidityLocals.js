@@ -51,7 +51,8 @@ class DebuggerSolidityLocals {
             },
             function getCurrentCalledAddressAt(stepIndex, next) {
                 try {
-                    const address = self.traceManager.getCurrentCalledAddressAt(stepIndex);
+                    let address = self.traceManager.getCurrentCalledAddressAt(stepIndex);
+                    address = 'xdc' + address.substring(2);
                     next(null, address);
                 }
                 catch (error) {

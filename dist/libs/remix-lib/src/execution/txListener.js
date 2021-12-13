@@ -245,7 +245,8 @@ class TxListener {
             const code = tx.input;
             contract = this._tryResolveContract(code, contracts, true);
             if (contract) {
-                const address = receipt.contractAddress;
+                let address = receipt.contractAddress;
+                address = 'xdc' + address.substring(2);
                 this._resolvedContracts[address] = contract;
                 fun = this._resolveFunction(contract, tx, true);
                 if (this._resolvedTransactions[tx.hash]) {

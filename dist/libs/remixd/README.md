@@ -45,7 +45,7 @@ Example:
 
 ## SHARE A FOLDER
 
-`remixd -s <absolute-path> --remix-ide https://remix.ethereum.org`
+`remixd -s <absolute-path> --remix-ide https://remix.xinfin.network`
 
 The current user should have `read/write` access to the folder (at least `read` access).
 

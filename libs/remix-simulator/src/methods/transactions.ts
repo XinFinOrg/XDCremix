@@ -127,7 +127,7 @@ export class Transactions {
 
   eth_getCode (payload, cb) {
     let address = payload.params[0]
-    // address = 'xdc'+address.substring(2)
+    address = 'xdc'+address.substring(2)
 
 
     this.vmContext.web3().eth.getCode(address, (error, result) => {

@@ -109,7 +109,8 @@ function encodeConstructorCallAndLinkLibraries(contract, params, funAbi, linkLib
             if (linkLibraries && linkReferences) {
                 for (const libFile in linkLibraries) {
                     for (const lib in linkLibraries[libFile]) {
-                        const address = linkLibraries[libFile][lib];
+                        let address = linkLibraries[libFile][lib];
+                        address = 'xdc' + address.substring(2);
                         if (!(0, ethereumjs_util_1.isValidAddress)(address))
                             return callback(address + ' is not a valid address. Please check the provided address is valid.');
                         bytecodeToDeploy = linkLibraryStandardFromlinkReferences(lib, address.replace('0x', ''), bytecodeToDeploy, linkReferences);
@@ -313,7 +314,8 @@ function linkBytecode(contract, contracts, callback, callbackStep, callbackDeplo
 }
 exports.linkBytecode = linkBytecode;
 function deployLibrary(libraryName, libraryShortName, library, contracts, callback, callbackStep, callbackDeployLibrary) {
-    const address = library.address;
+    let address = library.address;
+    address = 'xdc' + address.substring(2);
     if (address) {
         return callback(null, address);
     }
@@ -335,7 +337,8 @@ function deployLibrary(libraryName, libraryShortName, library, contracts, callba
             if (err) {
                 return callback(err);
             }
-            const address = txResult.receipt.contractAddress;
+            let address = txResult.receipt.contractAddress;
+            address = 'xdc' + address.substring(2);
             library.address = address;
             callback(err, address);
         });

@@ -135,7 +135,8 @@ class InternalCallTree {
     extractSourceLocation(step) {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             try {
-                const address = this.traceManager.getCurrentCalledAddressAt(step);
+                let address = this.traceManager.getCurrentCalledAddressAt(step);
+                address = 'xdc' + address.substring(2);
                 const location = yield this.sourceLocationTracker.getSourceLocationFromVMTraceIndex(address, step, this.solidityProxy.contracts);
                 return location;
             }
@@ -147,7 +148,8 @@ class InternalCallTree {
     extractValidSourceLocation(step) {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             try {
-                const address = this.traceManager.getCurrentCalledAddressAt(step);
+                let address = this.traceManager.getCurrentCalledAddressAt(step);
+                address = 'xdc' + address.substring(2);
                 const location = yield this.sourceLocationTracker.getValidSourceLocationFromVMTraceIndex(address, step, this.solidityProxy.contracts);
                 return location;
             }

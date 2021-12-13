@@ -90,7 +90,8 @@ class VmDebuggerLogic {
                 this.event.trigger('traceManagerStackUpdate', [{}]);
             }
             try {
-                const address = this._traceManager.getCurrentCalledAddressAt(index);
+                let address = this._traceManager.getCurrentCalledAddressAt(index);
+                address = 'xdc' + address.substring(2);
                 if (!this.storageResolver)
                     return;
                 var storageViewer = new storageViewer_1.StorageViewer({ stepIndex: this.stepManager.currentStepIndex, tx: this.tx, address: address }, this.storageResolver, this._traceManager);
@@ -128,7 +129,8 @@ class VmDebuggerLogic {
                 this.event.trigger('traceStepCostUpdate', [error]);
             }
             try {
-                const address = this._traceManager.getCurrentCalledAddressAt(index);
+                let address = this._traceManager.getCurrentCalledAddressAt(index);
+                address = 'xdc' + address.substring(2);
                 this.event.trigger('traceCurrentCalledAddressAtUpdate', [null, address]);
             }
             catch (error) {
@@ -156,7 +158,8 @@ class VmDebuggerLogic {
         this.address = [];
         this.traceLength = 0;
         this.debugger.event.register('newTraceLoaded', (length) => {
-            const addresses = this._traceManager.getAddresses();
+            let addresses = this._traceManager.getAddresses();
+            // address = 'xdc'+address.substring(2)
             this.event.trigger('traceAddressesUpdate', [addresses]);
             this.addresses = addresses;
             this._traceManager.getLength((error, length) => {

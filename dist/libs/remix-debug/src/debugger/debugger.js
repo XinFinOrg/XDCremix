@@ -53,7 +53,8 @@ class Debugger {
             // register selected code item, highlight the corresponding source location
             // this.debugger.traceManager.getCurrentCalledAddressAt(index, async (error, address) => {
             try {
-                const address = this.debugger.traceManager.getCurrentCalledAddressAt(index);
+                let address = this.debugger.traceManager.getCurrentCalledAddressAt(index);
+                address = 'xdc' + address.substring(2);
                 const compilationResultForAddress = yield this.compilationResult(address);
                 if (!compilationResultForAddress)
                     return;

@@ -52,7 +52,8 @@ class CodeManager {
             return this.retrieveCodeAndTrigger(this, tx.to, stepIndex, tx);
         }
         try {
-            const address = this.traceManager.getCurrentCalledAddressAt(stepIndex);
+            let address = this.traceManager.getCurrentCalledAddressAt(stepIndex);
+            address = 'xdc' + address.substring(2);
             this.retrieveCodeAndTrigger(this, address, stepIndex, tx);
         }
         catch (error) {
@@ -90,7 +91,8 @@ class CodeManager {
      */
     getFunctionFromStep(stepIndex, sourceMap, ast) {
         try {
-            const address = this.traceManager.getCurrentCalledAddressAt(stepIndex);
+            let address = this.traceManager.getCurrentCalledAddressAt(stepIndex);
+            address = 'xdc' + address.substring(2);
             const pc = this.traceManager.getCurrentPC(stepIndex);
             return this.getFunctionFromPC(address, pc, sourceMap, ast);
         }

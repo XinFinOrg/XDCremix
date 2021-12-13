@@ -48,7 +48,8 @@ class DebuggerSolidityState {
     }
     decode(index) {
         try {
-            const address = this.traceManager.getCurrentCalledAddressAt(this.stepManager.currentStepIndex);
+            let address = this.traceManager.getCurrentCalledAddressAt(this.stepManager.currentStepIndex);
+            address = 'xdc' + address.substring(2);
             if (this.stateVariablesByAddresses[address]) {
                 return this.extractStateVariables(this.stateVariablesByAddresses[address], address);
             }

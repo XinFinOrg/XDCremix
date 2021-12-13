@@ -39,7 +39,8 @@ class SolidityProxy {
       */
     contractObjectAt(vmTraceIndex) {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
-            const address = this.getCurrentCalledAddressAt(vmTraceIndex);
+            let address = this.getCurrentCalledAddressAt(vmTraceIndex);
+            address = 'xdc' + address.substring(2);
             if (this.cache.contractObjectByAddress[address]) {
                 return this.cache.contractObjectByAddress[address];
             }

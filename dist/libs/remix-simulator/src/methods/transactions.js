@@ -109,7 +109,8 @@ class Transactions {
         cb(null, 10000000 * 8);
     }
     eth_getCode(payload, cb) {
-        const address = payload.params[0];
+        let address = payload.params[0];
+        address = 'xdc' + address.substring(2);
         this.vmContext.web3().eth.getCode(address, (error, result) => {
             if (error) {
                 console.dir('error getting code');
@@ -146,7 +147,8 @@ class Transactions {
         return cb(null, this.tags[payload.params[0]]);
     }
     eth_getTransactionCount(payload, cb) {
-        const address = payload.params[0];
+        let address = payload.params[0];
+        address = 'xdc' + address.substring(2);
         this.vmContext.vm().stateManager.getAccount(ethereumjs_util_1.Address.fromString(address)).then((account) => {
             const nonce = new ethereumjs_util_1.BN(account.nonce).toString(10);
             cb(null, nonce);
@@ -155,7 +157,8 @@ class Transactions {
         });
     }
     eth_getTransactionByHash(payload, cb) {
-        const address = payload.params[0];
+        let address = payload.params[0];
+        address = 'xdc' + address.substring(2);
         this.vmContext.web3().eth.getTransactionReceipt(address, (error, receipt) => {
             if (error) {
                 return cb(error);

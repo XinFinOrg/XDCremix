@@ -61,7 +61,7 @@ export class StorageViewer {
     * @return {Bool} - return True if the storage at @arg address is complete
     */
   isComplete (address) {
-    return this.storageResolver.isComplete('xdc'+address.substring(2))
+    return this.storageResolver.isComplete(address)
   }
 
   /**

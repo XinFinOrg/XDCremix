@@ -78,7 +78,8 @@ class Ethdebugger {
             try {
                 const stack = this.traceManager.getStackAt(step);
                 const memory = this.traceManager.getMemoryAt(step);
-                const address = this.traceManager.getCurrentCalledAddressAt(step);
+                let address = this.traceManager.getCurrentCalledAddressAt(step);
+                address = 'xdc' + address.substring(2);
                 const calldata = this.traceManager.getCallDataAt(step);
                 try {
                     const storageViewer = new storageViewer_1.StorageViewer({ stepIndex: step, tx: this.tx, address: address }, this.storageResolver, this.traceManager);
@@ -106,7 +107,8 @@ class Ethdebugger {
     decodeStateAt(step, stateVars, callback) {
         return (0, tslib_1.__awaiter)(this, void 0, void 0, function* () {
             try {
-                const address = this.traceManager.getCurrentCalledAddressAt(step);
+                let address = this.traceManager.getCurrentCalledAddressAt(step);
+                address = 'xdc' + address.substring(2);
                 const storageViewer = new storageViewer_1.StorageViewer({ stepIndex: step, tx: this.tx, address: address }, this.storageResolver, this.traceManager);
                 const result = yield solidity_decoder_1.stateDecoder.decodeState(stateVars, storageViewer);
                 return result;

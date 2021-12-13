@@ -37,7 +37,7 @@ class Accounts {
     _addAccount(privateKey, balance) {
         return new Promise((resolve, reject) => {
             privateKey = Buffer.from(privateKey, 'hex');
-            const address = (0, ethereumjs_util_1.privateToAddress)(privateKey);
+            let address = (0, ethereumjs_util_1.privateToAddress)(privateKey);
             const addressStr = (0, ethereumjs_util_1.toChecksumAddress)('0x' + address.toString('hex'));
             this.accounts[addressStr] = { privateKey, nonce: 0 };
             this.accountsKeys[addressStr] = '0x' + privateKey.toString('hex');
@@ -73,7 +73,8 @@ class Accounts {
         return cb(null, Object.keys(this.accounts));
     }
     eth_getBalance(payload, cb) {
-        const address = payload.params[0];
+        let address = payload.params[0];
+        address = 'xdc' + address.substring(2);
         this.vmContext.vm().stateManager.getAccount(ethereumjs_util_1.Address.fromString(address)).then((account) => {
             cb(null, new ethereumjs_util_1.BN(account.balance).toString(10));
         }).catch((error) => {
@@ -81,7 +82,8 @@ class Accounts {
         });
     }
     eth_sign(payload, cb) {
-        const address = payload.params[0];
+        let address = payload.params[0];
+        address = 'xdc' + address.substring(2);
         const message = payload.params[1];
         const privateKey = this.accountsKeys[(0, ethereumjs_util_1.toChecksumAddress)(address)];
         if (!privateKey) {

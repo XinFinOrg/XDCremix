@@ -143,7 +143,8 @@ class Web3VmProvider {
             const status = data.execResult.exceptionError ? 0 : 1;
             this.txsReceipt[this.processingHash].status = `0x${status}`;
             if (data.createdAddress) {
-                const address = data.createdAddress.toString();
+                let address = data.createdAddress.toString();
+                address = 'xdc' + address.substring(2);
                 this.vmTraces[this.processingHash].return = (0, ethereumjs_util_1.toChecksumAddress)(address);
                 this.txsReceipt[this.processingHash].contractAddress = (0, ethereumjs_util_1.toChecksumAddress)(address);
             }
@@ -274,9 +275,7 @@ class Web3VmProvider {
                 nextKey: null
             });
         }
-        // Before https://github.com/ethereum/remix-project/pull/1703, it used to throw error as
-        // 'unable to retrieve storage ' + txIndex + ' ' + address
-        cb(null, { storage: {} });
+        cb('unable to retrieve storage ' + txIndex + ' ' + address);
     }
     getBlockNumber(cb) { cb(null, 'vm provider'); }
     getTransaction(txHash, cb) {

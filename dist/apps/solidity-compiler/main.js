@@ -1,9 +1,9 @@
 (window["webpackJsonp"] = window["webpackJsonp"] || []).push([["main"],{
 
 /***/ "../../../dist/libs/remix-lib/src/eventManager.js":
-/*!************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/eventManager.js ***!
-  \************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/eventManager.js ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -98,9 +98,9 @@ exports.EventManager = EventManager;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/eventsDecoder.js":
-/*!***********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/eventsDecoder.js ***!
-  \***********************************************************************************************************/
+/*!*************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/eventsDecoder.js ***!
+  \*************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -273,9 +273,9 @@ exports.EventsDecoder = EventsDecoder;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/forkAt.js":
-/*!****************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/forkAt.js ***!
-  \****************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/forkAt.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -391,9 +391,9 @@ const forks = {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/logsManager.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/logsManager.js ***!
-  \*********************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/logsManager.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -630,9 +630,9 @@ exports.LogsManager = LogsManager;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txExecution.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txExecution.js ***!
-  \*********************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txExecution.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -864,9 +864,9 @@ exports.checkVMError = checkVMError;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txFormat.js":
-/*!******************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txFormat.js ***!
-  \******************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txFormat.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1015,7 +1015,8 @@ function encodeConstructorCallAndLinkLibraries(contract, params, funAbi, linkLib
       if (linkLibraries && linkReferences) {
         for (const libFile in linkLibraries) {
           for (const lib in linkLibraries[libFile]) {
-            const address = linkLibraries[libFile][lib];
+            let address = linkLibraries[libFile][lib];
+            address = 'xdc' + address.substring(2);
             if (!(0, ethereumjs_util_1.isValidAddress)(address)) return callback(address + ' is not a valid address. Please check the provided address is valid.');
             bytecodeToDeploy = linkLibraryStandardFromlinkReferences(lib, address.replace('0x', ''), bytecodeToDeploy, linkReferences);
           }
@@ -1278,7 +1279,8 @@ function linkBytecode(contract, contracts, callback, callbackStep, callbackDeplo
 exports.linkBytecode = linkBytecode;
 
 function deployLibrary(libraryName, libraryShortName, library, contracts, callback, callbackStep, callbackDeployLibrary) {
-  const address = library.address;
+  let address = library.address;
+  address = 'xdc' + address.substring(2);
 
   if (address) {
     return callback(null, address);
@@ -1313,7 +1315,8 @@ function deployLibrary(libraryName, libraryShortName, library, contracts, callba
         return callback(err);
       }
 
-      const address = txResult.receipt.contractAddress;
+      let address = txResult.receipt.contractAddress;
+      address = 'xdc' + address.substring(2);
       library.address = address;
       callback(err, address);
     });
@@ -1486,9 +1489,9 @@ exports.isArrayOrStringStart = isArrayOrStringStart;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txHelper.js":
-/*!******************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txHelper.js ***!
-  \******************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txHelper.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -1731,9 +1734,9 @@ exports.inputParametersDeclarationToString = inputParametersDeclarationToString;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txListener.js":
-/*!********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txListener.js ***!
-  \********************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txListener.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2024,7 +2027,8 @@ class TxListener {
       contract = this._tryResolveContract(code, contracts, true);
 
       if (contract) {
-        const address = receipt.contractAddress;
+        let address = receipt.contractAddress;
+        address = 'xdc' + address.substring(2);
         this._resolvedContracts[address] = contract;
         fun = this._resolveFunction(contract, tx, true);
 
@@ -2191,9 +2195,9 @@ exports.TxListener = TxListener;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txRunner.js":
-/*!******************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txRunner.js ***!
-  \******************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txRunner.js ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2260,9 +2264,9 @@ function run(self, tx, stamp, confirmationCb, gasEstimationForceSend = null, pro
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txRunnerVM.js":
-/*!********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txRunnerVM.js ***!
-  \********************************************************************************************************/
+/*!**********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txRunnerVM.js ***!
+  \**********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2447,9 +2451,9 @@ exports.TxRunnerVM = TxRunnerVM;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/txRunnerWeb3.js":
-/*!**********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/txRunnerWeb3.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/txRunnerWeb3.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2651,9 +2655,9 @@ function pause() {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/execution/typeConversion.js":
-/*!************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/execution/typeConversion.js ***!
-  \************************************************************************************************************/
+/*!**************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/execution/typeConversion.js ***!
+  \**************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2714,9 +2718,9 @@ function convertToString(v) {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/helpers/compilerHelper.js":
-/*!**********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/helpers/compilerHelper.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/helpers/compilerHelper.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -2756,9 +2760,9 @@ exports.compilerInput = compilerInput;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/helpers/hhconsoleSigs.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/helpers/hhconsoleSigs.js ***!
-  \*********************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/helpers/hhconsoleSigs.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3150,9 +3154,9 @@ exports.ConsoleLogs = {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/helpers/txResultHelper.js":
-/*!**********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/helpers/txResultHelper.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/helpers/txResultHelper.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3224,9 +3228,9 @@ exports.resultToRemixTx = resultToRemixTx;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/helpers/uiHelper.js":
-/*!****************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/helpers/uiHelper.js ***!
-  \****************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/helpers/uiHelper.js ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3351,9 +3355,9 @@ exports.runInBrowser = runInBrowser;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/index.js":
-/*!*****************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/index.js ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/index.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3446,9 +3450,9 @@ exports.execution = execution;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/init.js":
-/*!****************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/init.js ***!
-  \****************************************************************************************/
+/*!******************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/init.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3528,9 +3532,9 @@ exports.extend = extend;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/storage.js":
-/*!*******************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/storage.js ***!
-  \*******************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/storage.js ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3629,9 +3633,9 @@ exports.Storage = Storage;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/util.js":
-/*!****************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/util.js ***!
-  \****************************************************************************************/
+/*!******************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/util.js ***!
+  \******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3976,9 +3980,9 @@ function findCallInternal(index, rootCall, callsPath) {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/web3Provider/dummyProvider.js":
-/*!**************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/web3Provider/dummyProvider.js ***!
-  \**************************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/web3Provider/dummyProvider.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4076,9 +4080,9 @@ exports.DummyProvider = DummyProvider;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/web3Provider/web3Providers.js":
-/*!**************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/web3Provider/web3Providers.js ***!
-  \**************************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/web3Provider/web3Providers.js ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4136,9 +4140,9 @@ exports.Web3Providers = Web3Providers;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-lib/src/web3Provider/web3VmProvider.js":
-/*!***************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-lib/src/web3Provider/web3VmProvider.js ***!
-  \***************************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-lib/src/web3Provider/web3VmProvider.js ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4335,7 +4339,8 @@ class Web3VmProvider {
       this.txsReceipt[this.processingHash].status = `0x${status}`;
 
       if (data.createdAddress) {
-        const address = data.createdAddress.toString();
+        let address = data.createdAddress.toString();
+        address = 'xdc' + address.substring(2);
         this.vmTraces[this.processingHash].return = (0, ethereumjs_util_1.toChecksumAddress)(address);
         this.txsReceipt[this.processingHash].contractAddress = (0, ethereumjs_util_1.toChecksumAddress)(address);
       } else if (data.execResult.returnValue) {
@@ -4482,13 +4487,9 @@ class Web3VmProvider {
         storage: JSON.parse(JSON.stringify(storage)),
         nextKey: null
       });
-    } // Before https://github.com/ethereum/remix-project/pull/1703, it used to throw error as
-    // 'unable to retrieve storage ' + txIndex + ' ' + address
+    }
 
-
-    cb(null, {
-      storage: {}
-    });
+    cb('unable to retrieve storage ' + txIndex + ' ' + address);
   }
 
   getBlockNumber(cb) {
@@ -4579,9 +4580,9 @@ exports.Web3VmProvider = Web3VmProvider;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler-abstract.js":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler-abstract.js ***!
-  \*******************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler-abstract.js ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4645,9 +4646,9 @@ exports.CompilerAbstract = CompilerAbstract;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler-helpers.js":
-/*!******************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler-helpers.js ***!
-  \******************************************************************************************************************/
+/*!********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler-helpers.js ***!
+  \********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4690,9 +4691,9 @@ exports.compile = compile;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler-input.js":
-/*!****************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler-input.js ***!
-  \****************************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler-input.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4744,9 +4745,9 @@ exports.default = (sources, opts) => {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler-utils.js":
-/*!****************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler-utils.js ***!
-  \****************************************************************************************************************/
+/*!******************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler-utils.js ***!
+  \******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4839,9 +4840,9 @@ exports.promisedMiniXhr = promisedMiniXhr;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler-worker.js":
-/*!*****************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler-worker.js ***!
-  \*****************************************************************************************************************/
+/*!*******************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler-worker.js ***!
+  \*******************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -4924,9 +4925,9 @@ exports.default = default_1;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/compiler.js":
-/*!**********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/compiler.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/compiler.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5517,9 +5518,9 @@ exports.Compiler = Compiler;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/txHelper.js":
-/*!**********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/txHelper.js ***!
-  \**********************************************************************************************************/
+/*!************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/txHelper.js ***!
+  \************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5570,9 +5571,9 @@ exports.default = {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/compiler/types.js":
-/*!*******************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/compiler/types.js ***!
-  \*******************************************************************************************************/
+/*!*********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/compiler/types.js ***!
+  \*********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5595,9 +5596,9 @@ exports.isEventDescription = isEventDescription;
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/index.js":
-/*!**********************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/index.js ***!
-  \**********************************************************************************************/
+/*!************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/index.js ***!
+  \************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5690,9 +5691,9 @@ Object.defineProperty(exports, "urlFromVersion", {
 /***/ }),
 
 /***/ "../../../dist/libs/remix-solidity/src/lib/eventManager.js":
-/*!*********************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/dist/libs/remix-solidity/src/lib/eventManager.js ***!
-  \*********************************************************************************************************/
+/*!***********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/dist/libs/remix-solidity/src/lib/eventManager.js ***!
+  \***********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5787,9 +5788,9 @@ exports.default = EventManager;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/clipboard/src/index.ts":
-/*!*********************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/clipboard/src/index.ts ***!
-  \*********************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/clipboard/src/index.ts ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5816,9 +5817,9 @@ Object.keys(_copyToClipboard).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css":
-/*!********************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css ***!
-  \********************************************************************************************************************************/
+/*!**********************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css ***!
+  \**********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -5843,25 +5844,25 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.tsx":
-/*!********************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.tsx ***!
-  \********************************************************************************************************************************/
+/*!**********************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.tsx ***!
+  \**********************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.CopyToClipboard = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -5874,7 +5875,7 @@ __webpack_require__(/*! ./copy-to-clipboard.css */ "../../../libs/remix-ui/clipb
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
 const _excluded = ["content", "tip", "icon", "direction", "children"];
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -5965,9 +5966,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/modal-dialog/src/index.ts":
-/*!************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/index.ts ***!
-  \************************************************************************************************/
+/*!**************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/index.ts ***!
+  \**************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6007,9 +6008,9 @@ Object.keys(_remixUiModalDialog).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css ***!
-  \*******************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6034,16 +6035,16 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.tsx":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.tsx ***!
-  \*******************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.tsx ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6056,7 +6057,7 @@ __webpack_require__(/*! ./modal-dialog-custom.css */ "../../../libs/remix-ui/mod
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.tsx";
 
 const ModalDialogCustom = props => {
   return /*#__PURE__*/(0, _jsxDevRuntime.jsxDEV)("div", {
@@ -6081,9 +6082,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css":
-/*!*********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css ***!
-  \*********************************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6108,23 +6109,23 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.tsx":
-/*!*********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.tsx ***!
-  \*********************************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.tsx ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.ModalDialog = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -6132,7 +6133,7 @@ __webpack_require__(/*! ./remix-ui-modal-dialog.css */ "../../../libs/remix-ui/m
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -6327,9 +6328,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/publish-to-storage/src/index.ts":
-/*!******************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/publish-to-storage/src/index.ts ***!
-  \******************************************************************************************************/
+/*!********************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/publish-to-storage/src/index.ts ***!
+  \********************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6356,23 +6357,23 @@ Object.keys(_publishToStorage).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/publish-to-storage/src/lib/publish-to-storage.tsx":
-/*!************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/publish-to-storage/src/lib/publish-to-storage.tsx ***!
-  \************************************************************************************************************************/
+/*!**************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/publish-to-storage/src/lib/publish-to-storage.tsx ***!
+  \**************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.PublishToStorage = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -6384,7 +6385,7 @@ var _publishOnSwarm = __webpack_require__(/*! ./publishOnSwarm */ "../../../libs
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/publish-to-storage/src/lib/publish-to-storage.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/publish-to-storage/src/lib/publish-to-storage.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -6552,16 +6553,16 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/publish-to-storage/src/lib/publishOnSwarm.tsx":
-/*!********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/publish-to-storage/src/lib/publishOnSwarm.tsx ***!
-  \********************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/publish-to-storage/src/lib/publishOnSwarm.tsx ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6697,16 +6698,16 @@ const swarmVerifiedPublish = async (content, expectedHash) => {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/publish-to-storage/src/lib/publishToIPFS.tsx":
-/*!*******************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/publish-to-storage/src/lib/publishToIPFS.tsx ***!
-  \*******************************************************************************************************************/
+/*!*********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/publish-to-storage/src/lib/publishToIPFS.tsx ***!
+  \*********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -6860,9 +6861,9 @@ const severalGatewaysPush = content => {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/renderer/src/index.ts":
-/*!********************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/renderer/src/index.ts ***!
-  \********************************************************************************************/
+/*!**********************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/renderer/src/index.ts ***!
+  \**********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6889,9 +6890,9 @@ Object.keys(_renderer).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/renderer/src/lib/renderer.css":
-/*!****************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/renderer/src/lib/renderer.css ***!
-  \****************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/renderer/src/lib/renderer.css ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6916,9 +6917,9 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/renderer/src/lib/renderer.tsx":
-/*!****************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/renderer/src/lib/renderer.tsx ***!
-  \****************************************************************************************************/
+/*!******************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/renderer/src/lib/renderer.tsx ***!
+  \******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -6936,7 +6937,7 @@ __webpack_require__(/*! ./renderer.css */ "../../../libs/remix-ui/renderer/src/l
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/renderer/src/lib/renderer.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/renderer/src/lib/renderer.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -7088,9 +7089,9 @@ exports.Renderer = Renderer;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/index.ts":
-/*!*****************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/index.ts ***!
-  \*****************************************************************************************************/
+/*!*******************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/index.ts ***!
+  \*******************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7130,9 +7131,9 @@ Object.keys(_logic).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/actions/compiler.ts":
-/*!********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/actions/compiler.ts ***!
-  \********************************************************************************************************************/
+/*!**********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/actions/compiler.ts ***!
+  \**********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -7213,23 +7214,23 @@ exports.listenToEvents = listenToEvents;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/compiler-container.tsx":
-/*!***********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/compiler-container.tsx ***!
-  \***********************************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/compiler-container.tsx ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.CompilerContainer = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -7249,7 +7250,7 @@ __webpack_require__(/*! ./css/style.css */ "../../../libs/remix-ui/solidity-comp
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/compiler-container.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/compiler-container.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -8316,9 +8317,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/contract-selection.tsx":
-/*!***********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/contract-selection.tsx ***!
-  \***********************************************************************************************************************/
+/*!*************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/contract-selection.tsx ***!
+  \*************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8342,7 +8343,7 @@ __webpack_require__(/*! ./css/style.css */ "../../../libs/remix-ui/solidity-comp
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/contract-selection.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/contract-selection.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -8897,9 +8898,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/css/style.css":
-/*!**************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/css/style.css ***!
-  \**************************************************************************************************************/
+/*!****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/css/style.css ***!
+  \****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -8924,23 +8925,23 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/logic/compileTabLogic.ts":
-/*!*************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/logic/compileTabLogic.ts ***!
-  \*************************************************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/logic/compileTabLogic.ts ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CompileTabLogic = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 const Compiler = __webpack_require__(/*! @remix-project/remix-solidity */ "../../../dist/libs/remix-solidity/src/index.js").Compiler;
 
@@ -9112,9 +9113,9 @@ exports.CompileTabLogic = CompileTabLogic;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/logic/contract-parser.ts":
-/*!*************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/logic/contract-parser.ts ***!
-  \*************************************************************************************************************************/
+/*!***************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/logic/contract-parser.ts ***!
+  \***************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9242,9 +9243,9 @@ const formatGasEstimates = function formatGasEstimates(data) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/logic/index.ts":
-/*!***************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/logic/index.ts ***!
-  \***************************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/logic/index.ts ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9284,23 +9285,23 @@ Object.keys(_contractParser).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/reducers/compiler.ts":
-/*!*********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/reducers/compiler.ts ***!
-  \*********************************************************************************************************************/
+/*!***********************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/reducers/compiler.ts ***!
+  \***********************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.compilerReducer = exports.compilerInitialState = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -9367,23 +9368,23 @@ exports.compilerReducer = compilerReducer;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/solidity-compiler/src/lib/solidity-compiler.tsx":
-/*!**********************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/solidity-compiler.tsx ***!
-  \**********************************************************************************************************************/
+/*!************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/solidity-compiler.tsx ***!
+  \************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.SolidityCompiler = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -9401,7 +9402,7 @@ __webpack_require__(/*! ./css/style.css */ "../../../libs/remix-ui/solidity-comp
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/solidity-compiler.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/solidity-compiler.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -9691,9 +9692,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/toaster/src/index.ts":
-/*!*******************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/toaster/src/index.ts ***!
-  \*******************************************************************************************/
+/*!*********************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/toaster/src/index.ts ***!
+  \*********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9720,9 +9721,9 @@ Object.keys(_toaster).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/toaster/src/lib/toaster.css":
-/*!**************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/toaster/src/lib/toaster.css ***!
-  \**************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/toaster/src/lib/toaster.css ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9747,23 +9748,23 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/toaster/src/lib/toaster.tsx":
-/*!**************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/toaster/src/lib/toaster.tsx ***!
-  \**************************************************************************************************/
+/*!****************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/toaster/src/lib/toaster.tsx ***!
+  \****************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.Toaster = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -9773,7 +9774,7 @@ __webpack_require__(/*! ./toaster.css */ "../../../libs/remix-ui/toaster/src/lib
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/toaster/src/lib/toaster.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/toaster/src/lib/toaster.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -9950,9 +9951,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/tree-view/src/index.ts":
-/*!*********************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/index.ts ***!
-  \*********************************************************************************************/
+/*!***********************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/index.ts ***!
+  \***********************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -9992,9 +9993,9 @@ Object.keys(_remixUiTreeView).forEach(function (key) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css":
-/*!***************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css ***!
-  \***************************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10019,25 +10020,25 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.tsx":
-/*!***************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.tsx ***!
-  \***************************************************************************************************************/
+/*!*****************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.tsx ***!
+  \*****************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.TreeView = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -10046,7 +10047,7 @@ __webpack_require__(/*! ./remix-ui-tree-view.css */ "../../../libs/remix-ui/tree
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
 const _excluded = ["children", "id"];
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.tsx";
 
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) { symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); } keys.push.apply(keys, symbols); } return keys; }
 
@@ -10077,9 +10078,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css ***!
-  \**************************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10104,25 +10105,25 @@ if (content.locals) {
 /***/ }),
 
 /***/ "../../../libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.tsx":
-/*!**************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.tsx ***!
-  \**************************************************************************************************************************/
+/*!****************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.tsx ***!
+  \****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.default = exports.TreeViewItem = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
-var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
+var _objectWithoutProperties2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/objectWithoutProperties.js"));
 
 var _react = _interopRequireWildcard(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -10131,7 +10132,7 @@ __webpack_require__(/*! ./tree-view-item.css */ "../../../libs/remix-ui/tree-vie
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
 const _excluded = ["id", "children", "label", "labelClass", "expand", "iconX", "iconY", "icon", "controlBehaviour", "innerRef"];
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.tsx";
 
 function _getRequireWildcardCache(nodeInterop) { if (typeof WeakMap !== "function") return null; var cacheBabelInterop = new WeakMap(); var cacheNodeInterop = new WeakMap(); return (_getRequireWildcardCache = function (nodeInterop) { return nodeInterop ? cacheNodeInterop : cacheBabelInterop; })(nodeInterop); }
 
@@ -10210,9 +10211,9 @@ exports.default = _default;
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/clipboard/src/lib/copy-to-clipboard/copy-to-clipboard.css ***!
+  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10221,9 +10222,9 @@ module.exports = [[module.i, ".copyIcon {\n    margin-left: 5px;\n    cursor: po
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css":
-/*!****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css ***!
-  \****************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/modal-dialog-custom.css ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10232,9 +10233,9 @@ module.exports = [[module.i, "\n/*# sourceMappingURL=data:application/json;base6
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css":
-/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css ***!
-  \******************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/modal-dialog/src/lib/remix-ui-modal-dialog.css ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10243,9 +10244,9 @@ module.exports = [[module.i, ".remixModalContent {\n  box-shadow: 0 0 8px 10000p
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/renderer/src/lib/renderer.css":
-/*!*************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/renderer/src/lib/renderer.css ***!
-  \*************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*******************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/renderer/src/lib/renderer.css ***!
+  \*******************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10254,9 +10255,9 @@ module.exports = [[module.i, ".remixui_sol.success,\n.remixui_sol.error,\n.remix
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/solidity-compiler/src/lib/css/style.css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/solidity-compiler/src/lib/css/style.css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/solidity-compiler/src/lib/css/style.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10265,9 +10266,9 @@ module.exports = [[module.i, ".remixui_title {\n  font-size: 1.1em;\n  font-weig
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/toaster/src/lib/toaster.css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/toaster/src/lib/toaster.css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/toaster/src/lib/toaster.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10276,9 +10277,9 @@ module.exports = [[module.i, ".remixui_tooltip {\n    z-index: 1001;\n    displa
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css":
-/*!************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css ***!
-  \************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/remix-ui-tree-view.css ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10287,9 +10288,9 @@ module.exports = [[module.i, ".li_tv {\n    list-style-type: none;\n    -webkit-
 /***/ }),
 
 /***/ "../../../node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!../../../node_modules/postcss-loader/dist/cjs.js?!../../../libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css":
-/*!***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/anilChinchawale/remix-project/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/anilChinchawale/remix-project/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css ***!
-  \***********************************************************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*!*****************************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/src/utils/third-party/cli-files/plugins/raw-css-loader.js!/Users/anil/github/xinFinOrg/remix-ide/node_modules/postcss-loader/dist/cjs.js??ref--5-oneOf-4-2!/Users/anil/github/xinFinOrg/remix-ide/libs/remix-ui/tree-view/src/lib/tree-view-item/tree-view-item.css ***!
+  \*****************************************************************************************************************************************************************************************************************************************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
@@ -10298,9 +10299,9 @@ module.exports = [[module.i, "\n/*# sourceMappingURL=data:application/json;base6
 /***/ }),
 
 /***/ "../../../node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js":
-/*!***************************************************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
-  \***************************************************************************************************************************/
+/*!*****************************************************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/node_modules/style-loader/dist/runtime/injectStylesIntoStyleTag.js ***!
+  \*****************************************************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10622,9 +10623,9 @@ module.exports = g;
 /***/ }),
 
 /***/ "../../remix-ide/src/lib/helper.js":
-/*!*****************************************************************************************!*\
-  !*** /Users/anil/github/anilChinchawale/remix-project/apps/remix-ide/src/lib/helper.js ***!
-  \*****************************************************************************************/
+/*!*******************************************************************************!*\
+  !*** /Users/anil/github/xinFinOrg/remix-ide/apps/remix-ide/src/lib/helper.js ***!
+  \*******************************************************************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -10646,6 +10647,10 @@ module.exports = {
     var len = address.length;
     return address.slice(0, 5) + '...' + address.slice(len - 5, len) + (etherBalance ? ' (' + etherBalance.toString() + ' ether)' : '');
   },
+  // shortenAddress: function (address, etherBalance) {
+  //   address = 'xdc'+address.substring(2)
+  //   return address.slice(0, 5) + '...' + address.slice(len - 5, len) + (etherBalance ? ' (' + etherBalance.toString() + ' XDC)' : '')
+  //   },
   addressToString: function addressToString(address) {
     if (!address) return null;
 
@@ -10878,7 +10883,7 @@ function find(args, query) {
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
@@ -10893,7 +10898,7 @@ var _compiler = __webpack_require__(/*! ./compiler */ "./app/compiler.ts");
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/apps/solidity-compiler/src/app/app.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/apps/solidity-compiler/src/app/app.tsx";
 const remix = new _compiler.CompilerClientApi();
 
 const App = () => {
@@ -10928,14 +10933,14 @@ exports.default = _default;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.CompilerApiMixin = void 0;
 
-var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
+var _defineProperty2 = _interopRequireDefault(__webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/esm/defineProperty.js"));
 
 var _remixSolidity = __webpack_require__(/*! @remix-project/remix-solidity */ "../../../dist/libs/remix-solidity/src/index.js");
 
@@ -11382,7 +11387,7 @@ exports.CompilerClientApi = CompilerClientApi;
 "use strict";
 
 
-var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
+var _interopRequireDefault = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault */ "../../../node_modules/@nrwl/web/node_modules/@babel/runtime/helpers/interopRequireDefault.js");
 
 var _react = _interopRequireDefault(__webpack_require__(/*! react */ "../../../node_modules/react/index.js"));
 
@@ -11392,7 +11397,7 @@ var _app = _interopRequireDefault(__webpack_require__(/*! ./app/app */ "./app/ap
 
 var _jsxDevRuntime = __webpack_require__(/*! react/jsx-dev-runtime */ "../../../node_modules/react/jsx-dev-runtime.js");
 
-var _jsxFileName = "/Users/anil/github/anilChinchawale/remix-project/apps/solidity-compiler/src/main.tsx";
+var _jsxFileName = "/Users/anil/github/xinFinOrg/remix-ide/apps/solidity-compiler/src/main.tsx";
 
 _reactDom.default.render( /*#__PURE__*/(0, _jsxDevRuntime.jsxDEV)(_react.default.StrictMode, {
   children: /*#__PURE__*/(0, _jsxDevRuntime.jsxDEV)(_app.default, {}, void 0, false, {
@@ -11415,7 +11420,7 @@ _reactDom.default.render( /*#__PURE__*/(0, _jsxDevRuntime.jsxDEV)(_react.default
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(/*! /Users/anil/github/anilChinchawale/remix-project/apps/solidity-compiler/src/main.tsx */"./main.tsx");
+module.exports = __webpack_require__(/*! /Users/anil/github/xinFinOrg/remix-ide/apps/solidity-compiler/src/main.tsx */"./main.tsx");
 
 
 /***/ }),
