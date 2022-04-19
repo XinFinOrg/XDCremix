@@ -99,11 +99,18 @@ class ContractDropdownUI {
   enableAtAddress (enable) {
     if (enable) {
       let address = this.atAddressButtonInput.value
-      address = 'xdc'+address.substring(2)
-      if (!address || !ethJSUtil.isValidAddress(address)) {
-        this.enableAtAddress(false)
-        return
-      }
+    //   if (address.substring(0,3) === "xdc") {
+    //     address = "0x" + address.substring(3);
+    // }
+      // if(address.subtring(0,3)=='xdc'){
+      //     address = '0x'+address.substring(3)
+
+      // }
+      // address = 'xdc'+address.substring(2)
+      // if (!address || !ethJSUtil.isValidAddress(address)) {
+      //   this.enableAtAddress(false)
+      //   return
+      // }
       this.atAddress.removeAttribute('disabled')
       this.atAddress.setAttribute('title', 'Interact with the given contract.')
     } else {
@@ -393,7 +400,7 @@ class ContractDropdownUI {
   loadFromAddress () {
     this.event.trigger('clearInstance')
 
-    let address = this.atAddressButtonInput.value
+    let address = '0x'+this.atAddressButtonInput.value.substring(3)
     if (!ethJSUtil.isValidChecksumAddress(address)) {
       addTooltip(yo`
         <span>
@@ -401,7 +408,7 @@ class ContractDropdownUI {
           <br>A checksummed address is an address that contains uppercase letters, as specified in <a href="https://eips.ethereum.org/EIPS/eip-55" target="_blank">EIP-55</a>.
           <br>Checksummed addresses are meant to help prevent users from sending transactions to the wrong address.
         </span>`)
-      address = ethJSUtil.toChecksumAddress(address)
+      // address = ethJSUtil.toChecksumAddress(address)
     }
     this.dropdownLogic.loadContractFromAddress(address,
       (cb) => {
