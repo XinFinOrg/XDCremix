@@ -400,7 +400,7 @@ class ContractDropdownUI {
   loadFromAddress () {
     this.event.trigger('clearInstance')
 
-    let address = '0x'+this.atAddressButtonInput.value.substring(3)
+    let address = helper.get0xAddress(this.atAddressButtonInput.value) 
     if (!ethJSUtil.isValidChecksumAddress(address)) {
       addTooltip(yo`
         <span>

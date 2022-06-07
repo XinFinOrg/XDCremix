@@ -5,6 +5,7 @@ var css = require('../../universal-dapp-styles')
 var copyToClipboard = require('./copy-to-clipboard')
 var remixLib = require('@remix-project/remix-lib')
 var txFormat = remixLib.execution.txFormat
+const helper = require('../../../lib/helper')
 
 class MultiParamManager {
   /**
@@ -55,6 +56,7 @@ class MultiParamManager {
     for (var j = 0; j < valArray.length; j++) {
       if (ret !== '') ret += ','
       var elVal = valArray[j].value
+      elVal = helper.get0xAddress(elVal)
       valArrayTest.push(elVal)
       elVal = elVal.replace(/(^|,\s+|,)(\d+)(\s+,|,|$)/g, '$1"$2"$3') // replace non quoted number by quoted number
       elVal = elVal.replace(/(^|,\s+|,)(0[xX][0-9a-fA-F]+)(\s+,|,|$)/g, '$1"$2"$3') // replace non quoted hex string by quoted hex string
