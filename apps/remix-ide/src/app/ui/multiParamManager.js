@@ -5,7 +5,7 @@ var css = require('../../universal-dapp-styles')
 var copyToClipboard = require('./copy-to-clipboard')
 var remixLib = require('@remix-project/remix-lib')
 var txFormat = remixLib.execution.txFormat
-const helper = require('../../../lib/helper')
+const helper = require('../../lib/helper')
 
 class MultiParamManager {
   /**

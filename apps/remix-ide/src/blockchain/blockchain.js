@@ -12,6 +12,7 @@ import { execution, EventManager, helpers } from '@remix-project/remix-lib'
 const { txFormat, txExecution, typeConversion, txListener: Txlistener, TxRunner, TxRunnerWeb3, txHelper } = execution
 const { txResultHelper: resultToRemixTx } = helpers
 const packageJson = require('../../../../package.json')
+const helper = require('../lib/helper')
 
 const _paq = window._paq = window._paq || []  //eslint-disable-line
 
@@ -264,9 +265,7 @@ class Blockchain extends Plugin {
   }
 
   runOrCallContractMethod (contractName, contractAbi, funABI, contract, value, address, callType, lookupOnly, logMsg, logCallback, outputCb, confirmationCb, continueCb, promptCb) {
-       if(address.substring(0,3)=='xdc'){
-          address = '0x'+address.substring(3)
-      }
+    address = helper.get0xAddress(address)
     // contractsDetails is used to resolve libraries
     txFormat.buildData(contractName, contractAbi, {}, false, funABI, callType, (error, data) => {
       if (error) {

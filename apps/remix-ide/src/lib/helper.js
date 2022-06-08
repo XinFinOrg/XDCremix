@@ -137,6 +137,14 @@ module.exports = {
     const keyPath = key.split('/')
 
     return keyPath[keyPath.length - 1]
+  },
+  getXDCAddress: (address = '') => {
+    const prefix = address?.slice(0, 2)
+    return prefix.toLowerCase() === '0x' ? 'xdc' + address.substring(2) : address
+  },
+  get0xAddress: (address = '') => {
+    const prefix = address?.slice(0, 3)
+    return prefix.toLowerCase() === 'xdc' ? '0x' + address.substring(3) : address
   }
 }
 
