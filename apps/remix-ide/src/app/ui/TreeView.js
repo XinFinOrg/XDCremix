@@ -40,6 +40,7 @@ var css = csjs`
 `
 
 var EventManager = require('../../lib/events')
+const helper = require('../../lib/helper')
 
 /**
  * TreeView
@@ -55,8 +56,17 @@ class TreeView {
     this.view = null
     this.expandPath = []
   }
-
+  getXDC (str) {
+    if(!str) return str
+    if(str?.includes('address: ')) {
+      const part = str.split(': ')
+      part[1] = helper.getXDCAddress(part[1])
+      str = part.join(': ')
+    }
+    return str
+  }
   render (json, expand) {
+    
     var view = this.renderProperties(json, expand)
     if (!this.view) {
       this.view = view
@@ -200,7 +210,7 @@ class TreeView {
       ret.isNode = true
       ret.isLeaf = false
     } else {
-      ret.self = item
+      ret.self = this.getXDC(item)
       ret.children = null
       ret.isNode = false
       ret.isLeaf = true
